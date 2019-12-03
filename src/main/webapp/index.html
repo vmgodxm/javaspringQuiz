@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>퀴즈 입력폼</title>
+<script src="/jquery/jquery.min.js"></script>
+<script src="/jquery-easing/jquery.easing.min.js"></script>
+<script type="text/javascript">
+	function inputNumberAutoComma(obj) {
+
+		// 콤마( , )의 경우도 문자로 인식되기때문에 콤마를 따로 제거한다.
+		var deleteComma = obj.value.replace(/\,/g, "");
+
+		// 콤마( , )를 제외하고 문자가 입력되었는지를 확인한다.
+		if (isFinite(deleteComma) == false) {
+			alert("문자는 입력하실 수 없습니다.");
+			obj.value = "";
+			return false;
+		}
+		// 기존에 들어가있던 콤마( , )를 제거한 이 후의 입력값에 다시 콤마( , )를 삽입한다.
+		obj.value = inputNumberWithComma(inputNumberRemoveComma(obj.value));
+	}
+
+	function inputNumberWithComma(str) {
+
+		str = String(str);
+		return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, "$1,");
+	}
+
+	function inputNumberRemoveComma(str) {
+
+		str = String(str);
+		return str.replace(/[^\d]+/g, "");
+	}
+	
+	function requestReadNum() {
+		var countNumber = document.getElementById('getNumber').value;
+	      $.ajax({
+	        url: "/requestReadNum/"+ countNumber,
+	        type: "GET",
+	        dataType: 'json',
+	      }).done(function (data) {
+	    	  
+	    	  var html="";
+	    		for (var i = 0; i < data.length; i++){
+	    			var list = data[i];
+	    	  
+	    	  html +=
+	    		  `${list}`
+	    		}  
+	    		 html += `원`;
+	    	  document.getElementById('readNumber').innerHTML = html;
+	      }).fail(function (jqXHR, textStatus, errorThrown) {
+
+	        console.log(jqXHR.responseText);
+	      });
+
+	 }
+	
+	
+	
+</script>
+
+</head>
+<body>
+	<h1>숫자를 입력하세요 (1000조 단위 까지)</h1>
+
+
+	<form name="form" id="countNumbera">
+		<input type="text" name="getNumber" id="getNumber"
+			onKeyup="inputNumberAutoComma(this);" value=""
+			style="text-align: right;" />
+		<a href="javascript:requestReadNum();">변환</a>
+	</form>
+	<br/>
+	<div>
+		<span id="readNumber"> 결과 표출 </span>
+	</div>
+</body>
+</html>
