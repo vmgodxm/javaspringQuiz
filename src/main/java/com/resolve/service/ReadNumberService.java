@@ -24,6 +24,8 @@ public class ReadNumberService {
 		ArrayList<String> countZero = new ArrayList<String>();
 		ArrayList<String> countZero2 = new ArrayList<String>();
 		ArrayList<String> countZero3 = new ArrayList<String>();
+		Integer compareNum =0;
+		
 		for (String strArray : cnArray) {
 			System.out.print(" "+strArray);
 		}
@@ -39,90 +41,84 @@ public class ReadNumberService {
 		}
 		    System.out.println();
 		    
-		for (int i = 0; i < reverseArray.size(); i++) {
-			Integer compareNum = Integer.parseInt(reverseArray.get(i));
+			for (int i = 0; i < reverseArray.size(); i++) {
+				compareNum = Integer.parseInt(reverseArray.get(i));
+				String[] readNum = {"영","일","이","삼","사","오","육","칠","팔","구"};
+				
+				
+				if(reverseArray.size() == 1 ) {
+					
+					for (int j = 0; j< readNum.length; j++) {
+						if(compareNum==j ) {readArray.add(i, readNum[j]);}
+					}
 
-			if(reverseArray.size() == 1 ) {
+				}
 				
-				if(compareNum==0 ) {readArray.add(i, "영");}
-				if(compareNum==1 ) {readArray.add(i, "일");}
-				if(compareNum==2 ) {readArray.add(i, "이");}
-				if(compareNum==3 ) {readArray.add(i, "삼");}
-				if(compareNum==4 ) {readArray.add(i, "사");}
-				if(compareNum==5 ) {readArray.add(i, "오");}
-				if(compareNum==6 ) {readArray.add(i, "육");}
-				if(compareNum==7 ) {readArray.add(i, "칠");}
-				if(compareNum==8 ) {readArray.add(i, "팔");}
-				if(compareNum==9 ) {readArray.add(i, "구");}
-			}
-			
-			if(reverseArray.size() >= 2 && (i==0 || (i%4)==0)) {
-				if(compareNum==1 && (reverseArray.size() == 5)) {readArray.add(i, "");}
-				else if(compareNum==1 ) {readArray.add(i, "일");}
-				if(compareNum==0 ) {readArray.add(i, "");}
-				if(compareNum==2 ) {readArray.add(i, "이");}
-				if(compareNum==3 ) {readArray.add(i, "삼");}
-				if(compareNum==4 ) {readArray.add(i, "사");}
-				if(compareNum==5 ) {readArray.add(i, "오");}
-				if(compareNum==6 ) {readArray.add(i, "육");}
-				if(compareNum==7 ) {readArray.add(i, "칠");}
-				if(compareNum==8 ) {readArray.add(i, "팔");}
-				if(compareNum==9 ) {readArray.add(i, "구");}
-			}
-			
-			if(reverseArray.size() >= 2 && (i==1 || (i%4)==1) ) {
-				if(compareNum==1 && (i==8 || i==12)) {readArray.add(i, "일");}
-				else if(compareNum==1 ) {readArray.add(i, "십");} 
-				if(compareNum==0 ) {readArray.add(i, "");}
-				if(compareNum==2 ) {readArray.add(i, "이십");}
-				if(compareNum==3 ) {readArray.add(i, "삼십");}
-				if(compareNum==4 ) {readArray.add(i, "사십");}
-				if(compareNum==5 ) {readArray.add(i, "오십");}
-				if(compareNum==6 ) {readArray.add(i, "육십");}
-				if(compareNum==7 ) {readArray.add(i, "칠십");}
-				if(compareNum==8 ) {readArray.add(i, "팔십");}
-				if(compareNum==9 ) {readArray.add(i, "구십");}
-			}
-			
-			if(reverseArray.size() >= 2 && (i==2 || (i%4)==2) ) {
+				if(reverseArray.size() >= 2 &&  (i%4)==0 ) {
+					if(compareNum==1 && (reverseArray.size() == 5) && i==4)  {readArray.add(i, "");}
+					else if(compareNum==1 ) {readArray.add(i, "일");}
+					if(compareNum==0 ) {readArray.add(i, "");}
+
+					for (int j = 2; j< readNum.length; j++) {
+						if(compareNum==j ) {readArray.add(i, readNum[j]);}
+					}
+				}
 				
-				if(compareNum==0 ) {readArray.add(i, "");}
-				if(compareNum==1 ) {readArray.add(i, "백");}
-				if(compareNum==2 ) {readArray.add(i, "이백");}
-				if(compareNum==3 ) {readArray.add(i, "삼백");}
-				if(compareNum==4 ) {readArray.add(i, "사백");}
-				if(compareNum==5 ) {readArray.add(i, "오백");}
-				if(compareNum==6 ) {readArray.add(i, "육백");}
-				if(compareNum==7 ) {readArray.add(i, "칠백");}
-				if(compareNum==8 ) {readArray.add(i, "팔백");}
-				if(compareNum==9 ) {readArray.add(i, "구백");}
-			}
-			
-			if(reverseArray.size() >= 2 && (i==3 || (i%4)==3) ) {
+				if(reverseArray.size() >= 2 && (i%4)==1 ) {
+					if(compareNum==1 && (i==8 || i==12)) {readArray.add(i, "일");}
+					else if(compareNum==1 ) {readArray.add(i, "십");} 
+					if(compareNum==0 ) {readArray.add(i, "");}
+					
+					for (int j = 2; j< readNum.length; j++) {
+						if(compareNum==j ) {readArray.add(i, readNum[j]+"십");}
+					}
+				}
 				
-				if(compareNum==0 ) {readArray.add(i, "");}
-				if(compareNum==1 ) {readArray.add(i, "천");}
-				if(compareNum==2 ) {readArray.add(i, "이천");}
-				if(compareNum==3 ) {readArray.add(i, "삼천");}
-				if(compareNum==4 ) {readArray.add(i, "사천");}
-				if(compareNum==5 ) {readArray.add(i, "오천");}
-				if(compareNum==6 ) {readArray.add(i, "육천");}
-				if(compareNum==7 ) {readArray.add(i, "칠천");}
-				if(compareNum==8 ) {readArray.add(i, "팔천");}
-				if(compareNum==9 ) {readArray.add(i, "구천");}
-			}
-			
-			//if(i==1 || i==5 || i==9) {readArray.add(i, "십");}
-			//if(i==2 || i==6 || i==10) {readArray.add(i+1, "백");}
-			
-			//if(cnArray.length > 2 ) {readArray.add(i,reverseArray.get(i));}
+				if(reverseArray.size() >= 2 && (i%4)==2 ) {
+					
+					if(compareNum==0 ) {readArray.add(i, "");}
+					if(compareNum==1 ) {readArray.add(i, "백");}
+					
+					for (int j = 2; j< readNum.length; j++) {
+						if(compareNum==j ) {readArray.add(i, readNum[j]+"백");}
+					}
+				}
+				
+				if(reverseArray.size() >= 2 && (i%4)==3 ) {
+					
+					if(compareNum==0 ) {readArray.add(i, "");}
+					if(compareNum==1 ) {readArray.add(i, "천");}
+					
+					for (int j = 2; j< readNum.length; j++) {
+						if(compareNum==j ) {readArray.add(i, readNum[j]+"천");}
+					}
+				}
 			
 		}
 		Integer thirteen = 0;
 		Integer ninth = 0;
 		Integer fourth = 0;
 		
-		 
+		if(5 > reverseArray.size() ) {
+			for (int j = 0; j < reverseArray.size(); j++) {
+				fourth = Integer.parseInt(reverseArray.get(j));
+				if(fourth==0) {
+				countZero.add(reverseArray.get(j));}
+			}
+			if(countZero.size()==4) {
+				if(compareNum==0 ) {readArray.add(3, "영");} 
+           				
+			}
+			if(countZero.size()==3) {
+				if(compareNum==0 ) {readArray.add(2, "영");} 
+           				
+			}
+			if(countZero.size()==2) {
+				if(compareNum==0 ) {readArray.add(1, "영");} 
+           				
+			}
+		}
+		
 		
 		
 		if(9 > reverseArray.size() && reverseArray.size() >=5) {
@@ -132,6 +128,7 @@ public class ReadNumberService {
 				countZero.add(reverseArray.get(j));}
 			}
 			if(countZero.size()==4) {
+				if(compareNum==0 ) {readArray.add(4, "영");} else
 				readArray.add(4, "만");
 			} else {
 				readArray.add(4, "만 ");
@@ -146,6 +143,7 @@ public class ReadNumberService {
 			}
 			
 			if(countZero.size()==4) {
+				
 				readArray.add(4, "만");
 			} else {
 				readArray.add(4, "만 ");
@@ -160,10 +158,18 @@ public class ReadNumberService {
 				readArray.remove(4);
 			}
 			if(countZero.size()==4 && countZero2.size()==4) {
+				if(compareNum==0 ) {readArray.add(8, "영");} else
 				readArray.add(8, "억");
 				
-			} else {
+			} else if(countZero.size()==4 && !(countZero2.size()==4)){
 				readArray.add(9, "억 "); 
+			} else if(!(countZero.size()==4) && !(countZero2.size()==4)){
+				readArray.add(9, "억 "); 
+			} else {
+				readArray.add(8, "억 "); 
+			}
+			if( (readArray.get(5).equals("일") && readArray.get(6).equals("") && readArray.get(7).equals("") && readArray.get(8).equals(""))) {
+				readArray.set(5, "");
 			}
 			
 		}
@@ -193,8 +199,12 @@ public class ReadNumberService {
 			if(countZero.size()==4 && countZero2.size()==4) {
 				readArray.add(8, "억");
 				
-			} else {
+			} else if(countZero.size()==4 && !(countZero2.size()==4)){
 				readArray.add(9, "억 "); 
+			} else if(!(countZero.size()==4) && !(countZero2.size()==4)){
+				readArray.add(9, "억 "); 
+			} else {
+				readArray.add(8, "억 "); 
 			}
 			
 			for (int j = 8; j < 12; j++) {
@@ -202,18 +212,27 @@ public class ReadNumberService {
 				if(thirteen==0) {
 				countZero3.add(reverseArray.get(j));}
 			}
-			if(countZero3.size()==4) {
+			if(countZero3.size()==4 && (readArray.get(8).equals("억") || readArray.get(8).equals("억 "))) {
+				readArray.remove(8);
+			}
+
+			if(countZero3.size()==4 && readArray.get(9).equals("억 ")) {
 				readArray.remove(9);
 			}
 			if(countZero.size()==4 && countZero2.size()==4 && countZero3.size()==4) {
+				if(compareNum==0 ) {readArray.add(12, "영");} else 
 				readArray.add(12, "조");
 				
 			} else if (  !(countZero3.size()==4 ) && !(countZero2.size()==4) ) {
 				readArray.add(14, "조 ");
+			} else if (  !(countZero.size()==4 ) && countZero2.size()==4 && countZero3.size()==4 ) {
+				readArray.add(12, "조 ");
 			} else {
 				readArray.add(13, "조 ");
 			}
-
+			if( (readArray.get(5).equals("일") && readArray.get(6).equals("") && readArray.get(7).equals("") && readArray.get(8).equals(""))) {
+				readArray.set(5, "");
+			}
 				
 		}
 		
@@ -221,7 +240,7 @@ public class ReadNumberService {
 
 		 
 		for (String reverse : readArray) {
-			System.out.print(" "+reverse);
+			System.out.print("."+reverse);
 		}
 		    System.out.println();
 		    
@@ -234,7 +253,7 @@ public class ReadNumberService {
 			System.out.print(reverse);
 		}
 	    	System.out.print("원");
-	
+	    	System.out.println();
 		
 	    	readNumStr = reverseArray2;
 		
@@ -242,3 +261,4 @@ public class ReadNumberService {
 	}
 
 }
+	
